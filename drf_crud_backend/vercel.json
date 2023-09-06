@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "drf_crud_backend/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": ["db.json"]
+      }
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "your_project.settings.prod",
+    "DATABASE_URL": "@your-database-url",
+    "REDIS_URL": "rediss://:<password>@<url>:<port>,"
+    "SECRET_KEY": "your-secret-key",
+    "DEBUG": "false"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "vercel_settings.py"
+    }
+  ],
+  "envSecrets": [
+    "DJANGO_SETTINGS_MODULE",
+    "DATABASE_URL",
+    "REDIS_URL",
+    "SECRET_KEY"
+  ]
+}

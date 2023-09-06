@@ -8,7 +8,6 @@ class CreateAuthorizationView(CreateAPIView):
     name = "authorization"
     serializer_class = AuthorizationSerializer
 
-    # TODO: выдать токен обновления и токен доступа (или JWS)
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():

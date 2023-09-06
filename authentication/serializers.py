@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.contrib.auth import authenticate
 from common_validators.json_validator import JSONValidator
 from common_validators.fields_validators import CustomEmailValidator, CustomPasswordValidator
 

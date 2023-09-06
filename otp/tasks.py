@@ -7,5 +7,5 @@ def send_otp_email_task(subject, message, from_email, recipient_list):
     try:
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
     except Exception as e:
-        # TODO: ОБРАБОТАТЬ ошибку
+        # TODO: handle possible exceptions
         return

@@ -8,7 +8,7 @@ class OTPSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OTP
-        fields = "__all__"
+        fields = ["code"]
         validators = [
             JSONValidator
         ]

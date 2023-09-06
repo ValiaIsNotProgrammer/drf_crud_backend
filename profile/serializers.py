@@ -3,11 +3,11 @@ from .models import CustomProfileModel
 from common_validators.json_validator import JSONValidator
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomProfileModel
-        fields = "__all__"
+        fields = ["email", "username", "password", "access_token", "refresh_token", "otp"]
         validators = [
             JSONValidator
         ]

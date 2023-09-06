@@ -1,15 +1,17 @@
 from django.contrib.auth.backends import ModelBackend
-from django.db.models import QuerySet
 
+from authentication.utils import generate_jwt_data, save_jwt_data
 from profile.models import CustomProfileModel
 
 
 class AuthenticationBackend(ModelBackend):
     def authenticate(self, request, email=None, password=None, **kwargs):
         try:
-            profile = CustomProfileModel.objects.get(email=email)
-            if profile.check_password(password):
-                return profile
+            user = CustomProfileModel.objects.get(email=email)
+            access_token, refresh_token = generate_jwt_data(user)
+            save_jwt_data(access_token, refresh_token, user)
+            if user.check_password(password):
+                return user
         except CustomProfileModel.DoesNotExist:
             return None
 

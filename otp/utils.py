@@ -1,7 +1,6 @@
 import pyotp
-from django.core.mail import send_mail
-
 from otp.tasks import send_otp_email_task
+from django.core.mail import send_mail
 from drf_crud_backend.settings import DEFAULT_FROM_EMAIL
 from otp.models import OTP
 from profile.models import CustomProfileModel
@@ -13,10 +12,10 @@ otp_code: str - code for sending on email
 """
 
 
-def send_otp_mail(**kwargs) -> dict:
-    send_mail(**kwargs)
-    # send_otp_email_task.delay(**kwargs)
-    return {"message": "Email sent successfully"}
+def send_otp_mail(**kwargs) -> None:
+    # send_mail(**kwargs)
+    send_otp_email_task.delay(**kwargs)
+    return
 
 
 def create_otp_mail(email: str, otp_code: str) -> dict:
@@ -44,7 +43,7 @@ def generate_otp_code(secret: str) -> str:
     return otp_code
 
 
-# TODO: сделать так, чтобы ключ каждый раз не сбрасывался
+# TODO: make sure that the key is not reset every time
 def generate_secret_key() -> str:
     secret = pyotp.random_base32()
     return secret
@@ -56,9 +55,17 @@ def generate_otp_data() -> tuple:
     return secret, otp_code
 
 
+def generate_mail_data(email: str) -> tuple:
+    secret, otp_code = generate_otp_data()
+    kwargs = prepare_text_mail(email, otp_code)
+    return secret, otp_code, kwargs
+
+
 def save_otp_data(code: str, secret: str, profile: CustomProfileModel) -> None:
     try:
         otp = OTP.objects.get(profile=profile)
+        profile.otp = otp
+        profile.save()
         return update_otp_data(code, secret, otp)
     except OTP.DoesNotExist:
         return create_otp_data(code, secret, profile)

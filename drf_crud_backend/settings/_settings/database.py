@@ -1,4 +1,4 @@
-from drf_crud_backend.settings.config import *
+from drf_crud_backend.settings._settings.config import *
 
 DATABASES = {
     'default': {
