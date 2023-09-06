@@ -1,9 +1,5 @@
-import os
+from drf_crud_backend.settings.env_settings import *
 
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
-    from drf_crud_backend.settings.prod_settings import *
-else:
-    from drf_crud_backend.settings.local_settings import *
 
 DEBUG = DEBUG
 
@@ -19,6 +15,12 @@ DB_USER = DB_USER
 DB_PASSWORD = DB_PASSWORD
 DB_HOST = DB_HOST
 DB_PORT = DB_PORT
+# POSTGRES_URL=
+# POSTGRES_URL_NON_POOLING=
+# POSTGRES_USER=
+# POSTGRES_HOST=
+# POSTGRES_PASSWORD=
+# POSTGRES_DATABASE=
 
 SECRET_KEY = SECRET_KEY
 API_VERSION = API_VERSION
