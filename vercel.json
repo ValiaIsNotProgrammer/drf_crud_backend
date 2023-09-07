@@ -6,6 +6,7 @@
     "config": { "maxLambdaSize": "15mb" }
     }
   ],
+
   "routes": [
     {
       "src": "/(.*)",
@@ -13,4 +14,3 @@
     }
   ]
 }
-
