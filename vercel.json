@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-    "src": "vercel_app/wsgi.py",
+    "src": "drf_crud_backend/wsgi.py",
     "use": "@vercel/vercel-python-wsgi",
     "config": { "maxLambdaSize": "15mb" }
     }
