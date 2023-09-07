@@ -1,5 +1,6 @@
 from decouple import config
 
+# "output": "drf_crud_backend/wsgi.py"
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=lambda v: [s.strip() for s in v.split(',')])
