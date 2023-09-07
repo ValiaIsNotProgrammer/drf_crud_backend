@@ -54,7 +54,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'drf_crud_backend.wsgi.app'
+WSGI_APPLICATION = 'drf_crud_backend.wsgi.application'
 
 
 
