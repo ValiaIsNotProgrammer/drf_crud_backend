@@ -1,16 +1,25 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "drf_crud_backend/wsgi.py",
-      "use": "@vercel/python"
+    "src": "vercel_app/wsgi.py",
+    "use": "@ardnt/vercel-python-wsgi",
+    "config": { "maxLambdaSize": "15mb" }
     }
   ],
+
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "drf_crud_backend/urls.py"
+      "dest": "drf_crud_backend/wsgi.py"
     }
   ]
 }
+
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "vercel_app/wsgi.py"
+        }
+    ]
+
 
