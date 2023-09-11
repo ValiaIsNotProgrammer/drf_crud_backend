@@ -7,7 +7,7 @@ Step 1: Clone the Repository
 To begin, you need to clone this repository to your local computer. Use the following command to clone it:
 
 
-```git clone https://github.com/your-repository-path.git```
+```git clone https://github.com/ValiaIsNotProgrammer/drf_crud_backend.git```
 
 ## Step 2: Build the Project
 The project is deployed on the Vercel platform, so you need to build it to prepare the application for deployment. Use these commands:
